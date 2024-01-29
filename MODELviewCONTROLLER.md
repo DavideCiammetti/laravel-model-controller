@@ -15,7 +15,9 @@ view--> in view al momento ho solo il file welcome.blade.phpche è collegato tra
                 return view('welcome');----> (WELCOME.BLADE.PHP)
             }
         }
-4) ora abbiamo la view e il controller che sono collegati, ma adesso dobbiamo fare 2 azioni:---> PRENDERE DATI DAL DB CON IL MODEL, E COLLEGARE IL MODEL AL CONTROLLER
+4) in routers andiamo nel file web.php e scriviamo---> **Route::get('/', [PageController::class, 'index']);** che rappresenta il collegamento con il controller da ricordare che bisogna importare ---->***use App\Http\Controllers\Guest\PageController;
+
+5) ora abbiamo la view e il controller che sono collegati, ma adesso dobbiamo fare 2 azioni:---> PRENDERE DATI DAL DB CON IL MODEL, E COLLEGARE IL MODEL AL CONTROLLER
 
     -  ANDIAMO NEL FILE .ENV e modifichiamo alcuni dei valori per collegare il nostro db.
     quinid modifichiamo la password, la porta del server se necessario, e soprattutto la voce {**DB_DATABASE**} cioe il NOME DEL DB.
@@ -24,7 +26,7 @@ view--> in view al momento ho solo il file welcome.blade.phpche è collegato tra
         class Movie extends Model{
                 use HasFactory;
             }
-5) collegamento tra il file movie.php e il controller quindi PageController.
+6) collegamento tra il file movie.php e il controller quindi PageController.
 Proprio in PageController usiamo---> use App\Models\Movie; e all'interno della classe creata prima inseriamo --->**$movie = Movie::all();
 
     class PageController extends Controller
@@ -36,3 +38,16 @@ Proprio in PageController usiamo---> use App\Models\Movie; e all'interno della c
         }
     }
 
+## passare i dati a welcome.blade.php
+
+
+  class PageController extends Controller
+    {
+        public function index(){
+            $movie = Movie::all(); ---> questo rappresenta la nostra query che ci permette di prendere tutti gli elementi del db 
+            $data = [
+                'movie' => $movie,
+            ];
+            return view('welcome', $data);---> o altrimenti usiamo la funzione compact('movie')
+        }
+    }
