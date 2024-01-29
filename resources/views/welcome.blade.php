@@ -10,15 +10,16 @@
 </head>
 
 <body>
-  <div class="d-flex flex-wrap justify-content-center gap-3 mt-5"> 
+    <h1 class="text-center">THE MOVIE DB</h1>
+  <div class="d-flex flex-wrap justify-content-center gap-4 mt-5 mb-5"> 
         @foreach ($movie as $movies)
-        <div class="card" style="width: 18rem;">
+        <div class="box-shad-g card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">{{$movies['title']}}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">{{$movies['original_title']}}</h6>
-                <p class="card-text">{{$movies['nationality']}}</p>
-                <p>{{$movies['date']}}</p>
-                <p>{{$movies['vote']}}</p>
+                <h5 class="card-title"><span class="font">Titolo: </span>{{$movies['title']}}</h5>
+                <h6 class=" mb-2 "><span class="font">Titolo Originale: </span>{{$movies['original_title']}}</h6>
+                <p class="card-text"><span class="font">Nazionalita': </span>{{$movies['nationality']}}</p>
+                <p><span class="font">Data di Uscita: </span>{{$movies['date']}}</p>
+                <p><span class="font">Voto: </span>{{$movies['vote']}}</p>
             </div>
         </div>
         @endforeach
